@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>computed基本</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{fullName}}</h2>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        firstName: 'Harry',
+        lastName: 'Potter',
+      },
+      // 计算属性computed是属性，不需要加括号()
+      // 起名字的时候不要用动词，用名词
+      computed:{
+        fullName(){
+          return this.firstName + ' ' + this.lastName
+        }
+      }
+    });
+  </script>
+</body>
+</html>

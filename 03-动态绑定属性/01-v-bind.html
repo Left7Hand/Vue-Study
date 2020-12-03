@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-bind</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 完整写法 -->
+    <img v-bind:src="imgUrl" alt="picture">
+    <a v-bind:href="href">bing</a>
+    <br>
+    <!-- 语法糖 -->
+    <img :src="imgUrl" alt="picture">
+    <a :href="href">bing</a>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        imgUrl: 'http://img14.3lian.com/201511/23/4b265b2336bdc56652046a9b08e46936.jpg',
+        href:'https://www.bing.com',
+      }
+    });
+  </script>
+
+  
+</body>
+</html>

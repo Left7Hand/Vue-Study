@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-on修饰符</title>
+</head>
+<body>
+  <div id="app">
+    <div @click="divClick">
+      aaaaaaaaaa
+      <button @click="btn1Click">btn1</button>
+      <!-- .stop修饰符：调用event.stopPropagation()，阻止冒泡 -->
+      <button @click.stop="btn2Click">btn2</button>
+    </div>
+    <!-- .prevent修饰符：调用event.preventDefault() ，阻止调用默认-->
+    <a href="http://www.bing.com" @click.prevent="aHref">bing</a>
+    <br>
+    <!-- .keyCode | .keyAlias ：当键盘某键帽触发时才回调 -->
+    <input type="text" @click.keyup.enter="inputContent">
+    <br>
+    <!-- .once ：只触发一次回调 -->
+    <button @click.once="btn3Click">btn3</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+      },
+      methods: {
+        btn1Click(){
+          console.log('btn1');
+        },
+        btn2Click(){
+          console.log('btn2');
+        },
+        divClick(){
+          console.log('div');
+        },
+        aHref(){
+          console.log('aHref');
+        },
+        inputContent(){
+          console.log('enter keyup');
+        },
+        btn3Click(){
+          console.log('btn3');
+        },
+      }
+    });
+  </script>
+</body>
+</html>

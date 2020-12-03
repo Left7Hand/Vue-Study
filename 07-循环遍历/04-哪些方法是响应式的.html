@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>响应式的方法</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in letters">{{item}}</li>
+      </ul>
+      <button @click="pop()">pop</button>
+      <button @click="push()">push</button>
+      <button @click="shift()">shift</button>
+      <button @click="unshift()">unshift</button>
+      <button @click="spliceDelete()">spliceDelete</button>
+      <button @click="spliceChange()">spliceChange</button>
+      <button @click="spliceInsert()">spliceInsert</button>
+      <button @click="change()">更改数组</button>
+      <button @click="vueSet()">vue.set</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          letters: ['A', 'B', 'C', 'D', 'E']
+        },
+        methods: {
+          // 1.删除数组最后一个元素
+          pop(){
+            this.letters.pop()
+          },
+          // 2.数组后面追加元素
+          push(){
+            this.letters.push('push')
+          },
+          // 3.删除数组第一个元素
+          shift(){
+            this.letters.shift()
+          },
+          // 4.数组前面追加元素
+          unshift(){
+            this.letters.unshift('unshift')
+          },
+          // 5. splice作用：删除元素 / 插入元素 / 更改元素
+          // 第一个参数表示从哪个索引开始
+          // 删除元素：第二个参数传要删除几个元素，若空则删后面全部
+          spliceDelete(){
+            // 从索引1开始， 删除2个元素（这里是删除B和C）
+            this.letters.splice(1, 2)
+          },
+          // 更改元素：第二个参数，表示要替换几个元素，后面是新数据
+          spliceChange(){
+            // 从索引1开始，修改1个元素为spliceChange，也就是修改索引1的数据
+            this.letters.splice(1, 1, 'spliceChange')
+          },
+          // 插入元素：第二个参数（0），后面是新数据
+          spliceInsert(){
+            // 在索引1位置插入新元素spliceInsert
+            this.letters.splice(1, 0, 'spliceInsert')
+          },
+          // 6.！！！注意：这个不是响应式的 
+          change(){
+            // 在浏览器console中可以看到数据发生变化，但是页面不响应
+            this.letters[0] = "change"
+          },
+          // 7.(更改数据)vue中自带方法，参数(操作的对象, 索引, 要加入的数据)
+          vueSet(){
+            // 修改索引0的元素为vueSet
+            Vue.set(this.letters, 0, "vueSet")
+          },
+        }
+      });
+    </script>
+  </body>
+</html>

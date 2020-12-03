@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for中添加key</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 任务(插入):在ABCDE->AB(F)CDE -->
+    <ul>
+      <!-- key绑定item，key要求是唯一性；不用index，因为插入数据后，index会变化 -->
+      <!-- diff算法是插入元素后，每个元素往后移，D->C, E->D, 以此类推 -->
+      <!-- diff算法性能差，加入key能高效刷新虚拟DOM-->
+      <li v-for="item in letters" :key="item">{{item}}</li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        letters: ['A', 'B', 'C', 'D', 'E']
+      }
+    });
+  </script>
+</body>
+</html>

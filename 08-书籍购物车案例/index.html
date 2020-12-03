@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>books' cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div v-if="books.length != 0">
+      <table>
+        <thead>
+          <tr>
+            <td>序号</td>
+            <td>书籍名称</td>
+            <td>出版日期</td>
+            <td>价格</td>
+            <td>购买数量</td>
+            <td>操作</td>
+          </tr>  
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in books">
+            <td>{{index+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.time}}</td>
+            <!-- 使用过滤器过滤人民币符号和小数点 -->
+            <td>{{item.price | showPrice}}</td>
+            <td>
+              <!-- 数量为1的时候，按钮减禁用 -->
+              <button @click="decrement(index)" :disabled="item.number <= 1">-</button>
+              {{item.number}}
+              <button @click="increment(index)">+</button>
+            </td>
+            <td><button @click="removeHandler(index)">delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>总价格：{{totalPrice | showPrice}}</h2>
+    </div>
+    <div v-else>购物车为空</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="main.js"></script>
+</body>
+</html>

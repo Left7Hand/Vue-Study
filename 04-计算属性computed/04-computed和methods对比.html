@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>computed vs methods</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{firstName}} {{lastName}}</h2>
+      <hr>
+      <!-- methods会调用4次 -->
+      <h2>{{getFullName()}}</h2>
+      <h2>{{getFullName()}}</h2>
+      <h2>{{getFullName()}}</h2>
+      <h2>{{getFullName()}}</h2>
+      <hr>
+      <!-- computed只调用一次，计算属性会进行缓存 -->
+      <h2>{{fullName}}</h2>
+      <h2>{{fullName}}</h2>
+      <h2>{{fullName}}</h2>
+      <h2>{{fullName}}</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          firstName: 'Harry',
+          lastName: 'Potter'
+        },
+        methods:{
+          getFullName:function(){
+            console.log('methods');
+            return this.firstName + '' + this.lastName
+          }
+        },
+        computed:{
+          fullName: function(){
+            console.log('computed');
+            return this.firstName + '' + this.lastName
+          }
+
+        }
+        
+      });
+    </script>
+  </body>
+</html>

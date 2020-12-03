@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-show</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-if 删除或添加dom元素（显示与隐藏只操作一次） -->
+      <h2 v-if="isShow">{{message}}</h2>
+      <!-- v-show 控制样式 display，dom元素还在，只是不显示，（显示与隐藏操作多次） -->
+      <h2 v-show="isShow">{{message}}</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Vue.js",
+          isShow: true
+        },
+      });
+    </script>
+  </body>
+</html>

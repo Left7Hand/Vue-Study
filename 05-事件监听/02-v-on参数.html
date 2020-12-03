@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-on参数</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1.事件调用的方法没有参数 -->
+      <button v-on:click="btn1()">button1</button>
+      <!-- 2.在事件定义时，若省略()，方法又需要参数，则传递浏览器event对象 -->
+      <button @click="btn2">button2</button>
+      <!-- 3.若没有省略()，但是()中没有参数，则是undefined -->
+      <button @click="btn3()">button3</button>
+      <!-- 4.当我们需要event参数和其他参数，需要写成 $event -->
+      <!-- 这里的abc没有单引号，所以它是变量，变量需要在vue对象中定义 -->
+      <button @click="btn4(abc, $event)">button4</button>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Vue.js",
+          abc: 111,
+        },
+        methods: {
+          btn1() {
+            console.log("btn1");
+          },
+          btn2(a) {
+            console.log("btn2-----"+ a);
+          },
+          btn3(a) {
+            console.log("btn3-----"+a);
+          },
+          btn4(abc, event) {
+            console.log("btn4---"+abc+"---"+event);
+          },
+          
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for对象</title>
+</head>
+<body>
+  <div id="app">
+    <div>1.直接item遍历(item是value)</div>
+    <ul>
+      <li v-for="item in person">{{item}}</li>
+    </ul>
+    <div>2.(value, key)</div>
+    <ul>
+      <li v-for="(value, key) in person">{{value}}--{{key}}</li>
+    </ul>
+    <div>3.(value, key, index)</div>
+    <ul>
+      <li v-for="(value, key, index) in person">{{value}}--{{key}}--{{index+1}}</li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        person: {
+          name: 'Leo',
+          age: 18,
+          height: 180
+
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-on</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>计数器：{{count}}</h2>
+      <!-- v-on：绑定事件，这里是绑定点击事件 -->
+      <button v-on:click="add()">+</button>
+      <!-- 语法糖：就是简写形式 -->
+      <button @click="sub">-</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      // proxy 代理
+      var obj = {
+        count: 0,
+        message: "hello Vue",
+      };
+      // vue把代理的数据加载进来
+      var app = new Vue({
+        el: "#app",
+        data: obj,
+        methods: {
+          //   增加
+          add: function () {
+            this.count++;
+          },
+          //   减少
+          sub() {
+            this.count--;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

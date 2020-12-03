@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>账号邮箱切换案例</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 在账号登录输入框输入数据，点击切换，数据依旧显示在邮箱登录输入框 -->
+    <!-- 原因:vue通过虚拟DOM渲染数据到DOM，相同的元素会缓存起来，若要更换，添加key -->
+    <!-- 加入key之后，组件就不会复用，也就切换时，输入框的数据会清空 -->
+    <span v-if="isUser">
+      <!-- label的for作用：点击label光标会聚焦在输入框（for和id要相同） -->
+      <label for="userId">账号登录</label>
+      <input type="text" id="userId" placeholder="账号登录" key="userId">
+    </span>
+    <span v-else>
+      <label for="email">邮箱登录</label>
+      <input type="text" id="email" placeholder="邮箱登录" key="email">
+    </span>
+    <button @click="change()">切换登录</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        isUser: true,
+      },
+      methods:{
+        change(){
+          this.isUser = !this.isUser
+        },
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>账号邮箱切换案例</title>
+</head>
+<body>
+  <div id="app">
+    <span v-if="isUser">
+      <label for="userId">账号登录</label>
+      <input type="text" id="userId" placeholder="账号登录">
+    </span>
+    <span v-else>
+      <label for="email">邮箱登录</label>
+      <input type="text" id="email" placeholder="邮箱登录">
+    </span>
+    <button @click="change()">切换登录</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        isUser: true,
+      },
+      methods:{
+        change(){
+          this.isUser = !this.isUser
+        },
+      }
+    });
+  </script>
+</body>
+</html>
