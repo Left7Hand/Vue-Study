@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model & chechbox</title>
+</head>
+<body>
+  <div id="app">
+    <h3>单选框</h3>
+    <!-- label的作用：点击文字的时候，也能勾选 -->
+    <label for="licence">
+      <input type="checkbox" name="licence" id="licence" v-model="isAgree">阅读协议证书
+    </label>
+    <br>
+    <button :disabled="!isAgree">下一步</button>
+    <hr>
+    <h3>多选框</h3>
+    <label for="basketball">
+      <input type="checkbox" id="basketball" value="打篮球" v-model="hobbies">打篮球
+    </label>
+    <label for="music">
+      <input type="checkbox" id="music" value="听音乐" v-model="hobbies">听音乐
+    </label>
+    <label for="reading">
+      <input type="checkbox" id="reading" value="阅读" v-model="hobbies">阅读
+    </label>
+    <label for="swimming">
+      <input type="checkbox" id="swimming" value="游泳" v-model="hobbies">游泳
+    </label>
+    <h3>你选择的爱好是：{{hobbies}}</h3>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+        isAgree: false, //单选是boolean类型
+        hobbies: [],    //多选是数组类型
+      },
+    });
+  </script>
+</body>
+</html>

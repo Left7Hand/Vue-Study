@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数编程</title>
+  </head>
+  <body>
+    <script>
+      // 1.编程范式：命令式编程（下一步要做什么）和生命式编程（如Vue）
+      // 2.编程范式：面向对象（抽象封装）；面向函数
+      // 3.有三个函数：filter，map，reduce
+
+      // 任务1：获取数组中小于100的数字
+      // 任务2：将任务1获取的数字乘以2
+      // 任务3：将任务2的获取的数字求和
+      let nums = [11, 22, 111, 200, 30, 120, 57];
+
+      // 1.filter中回调函数：必须返回一个boolean值
+      // 结果为true：函数内部会自动将回调的参数n加入到新的数组
+      // 结果为false：函数内部自动过滤掉参数n
+      // 这里得到结果：[11,22,30,57]
+      let num1 = nums.filter(function (n) {
+        return n < 100;
+      });
+      console.log("num1 =", num1);
+
+      // 2.map中回调函数返回的值会作为新的值，这里回调函数调用4次(num1有4个数)
+      // 例子：let num2 = num1.map(function(n){return 100})
+      // 返回是100，新数组num2 = [100,100,100,100]
+      // 这里得到结果：[22,44,60,114]
+      let num2 = num1.map(function (n) {
+        return n * 2;
+      });
+      console.log("num2 =", num2);
+
+      // 3.reduce对数组中的元素进行汇总
+      // reduce(参数1，参数2:初始化参数1中的previousValue)
+      // (fun(previousValue,n), 0)
+      // 参数1是函数；参数2是0，表示previousValue初始值=0
+      // 第一次：previousValue=0, n=11
+      // 第二次：previousValue=11, n=22
+      // 第三次：previousValue=33, n=30
+      // 第四次：previousValue=63, n=57
+      let total_0 = num2.reduce(function (previousValue, n) {
+        return previousValue + n;
+      }, 0);
+
+      console.log("total_0 =", total_0);
+      
+      console.log("------简洁代码1------");
+      let total_1 = nums
+        .filter(function (n) {
+          return n < 100;
+        })
+        .map(function (n) {
+          return n * 2;
+        })
+        .reduce(function (previousValue, n) {
+          return previousValue + n;
+        }, 0);
+      console.log("total_1 =", total_1);
+
+      console.log("------简洁代码2------");
+      let total_2 = nums
+        .filter(n => n < 100)
+        .map(n => n * 2)
+        .reduce((pre, n) => pre + n);
+      console.log("total_2 =", total_2);
+    </script>
+  </body>
+</html>

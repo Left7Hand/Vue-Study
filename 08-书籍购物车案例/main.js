@@ -44,11 +44,15 @@ var app = new Vue({
   },
   computed:{
     totalPrice(){
-      let totalPrice = 0
-      for (let iterator of this.books) {
-        totalPrice += iterator.price * iterator.number
-      }
-      return totalPrice
+      // 1.使用for计算总价格
+      // let totalPrice = 0
+      // for (let iterator of this.books) {
+      //   totalPrice += iterator.price * iterator.number
+      // }
+      // return totalPrice
+
+      // 2.使用高阶函数计算总价格
+      return this.books.reduce((pre, book) => pre + book.price * book.number, 0)
     }
   },
   // 过滤器

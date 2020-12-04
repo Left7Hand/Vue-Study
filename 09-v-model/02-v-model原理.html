@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model原理</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-bind:value="message" v-on:input="valueChange">
+    <h2>{{message}}</h2>
+    <hr>
+    <input type="text" :value="message" @input="message = $event.target.value">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      // v-model原理：1.将vue中数据绑定到html元素，2.监听输入的数据
+      // 1.v-bind绑定数据value，2.v-on监听input的输入的数据(event.target.value)
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+      },
+      methods: {
+        // 若方法形参是event，html中没有参数，则自动传入event
+        valueChange(event){
+          this.message = event.target.value
+        }
+      }
+    });
+  </script>
+</body>
+</html>

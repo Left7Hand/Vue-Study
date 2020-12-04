@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model & select</title>
+</head>
+<body>
+  <div id="app">
+    <!-- select标签不常用 -->
+    <h3>单选</h3>
+    <select name="fruit" v-model="fruit">
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="葡萄">葡萄</option>
+    </select>
+    <h3>你选择的水果是：{{fruit}}</h3>
+    <hr>
+    <h3>多选</h3>
+    <!-- 多选框需要加入multiple属性 -->
+    <select name="fruits" v-model="fruits" multiple>
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="葡萄">葡萄</option>
+      <option value="柠檬">柠檬</option>
+    </select>
+    <h3>你选择的水果是：{{fruits}}</h3>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+        fruit: '苹果',
+        fruits: []
+      }
+    });
+  </script>
+</body>
+</html>
