@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>为什么组件中data是函数</title>
+</head>
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h3>count: {{count}}</h3>
+      <button @click="increment()">+</button>
+      <button @click="decrement()">-</button>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('cpn',
+      {
+        template: '#cpn',
+        // data设计成函数的原因：
+        // 当组件复用的时候，数据不会相互影响
+        // 返回的对象是不同的地址空间，因此数据不同
+        // 若想要数据相互影响，可以在外部创建一个对象变量，data返回此对象变量
+        data(){
+          return {
+            count: 0
+          }
+        },
+        methods: {
+          increment(){
+            this.count++
+          },
+          decrement(){
+            this.count--
+          }
+        }
+      }
+    )
+
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全局组件和局部组件</title>
+</head>
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <hr>
+  <div id="app2">
+    <h2>app2</h2>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    // 1.创建组件构造器
+    const cpnC = Vue.extend({
+      template: `
+        <div>
+          <h2>标题1</h2>
+          <p>内容1111111</p>
+        </div>
+      `
+    });
+
+    //2.注册组件（这里注册的是全局组件）
+    // Vue.component('cpn', cpnC);
+
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+      },
+      // vue内部注册的组件是局部组件，只能在这个vue中使用
+      components:{
+        // 组件名：组件构造器
+        cpn: cpnC
+      },
+    })
+
+    // 一般不会写两个div，这里是为了演示全局组件
+    var app = new Vue({
+      el: '#app2',
+      data:{
+        message: 'Vue.js',
+      }
+    });
+  </script>
+</body>
+</html>

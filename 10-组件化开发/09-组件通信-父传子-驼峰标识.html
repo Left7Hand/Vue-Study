@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件通信-父传子-驼峰标识</title>
+</head>
+<body>
+  <div id="app">
+    <!-- vue在标签中不支持驼峰标识，要使用连线符号“-” -->
+    <cpn :my-vue-message="person"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h3>{{myVueMessage}}</h3>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      props: {
+        myVueMessage: {
+          type: Object,
+          default(){
+            return {default:'default...'}
+          }
+        }
+      }
+    }
+
+    var app = new Vue({
+      el: '#app',
+      data:{
+        person: {
+          name: 'Leo',
+          age: 18,
+          height: 180
+        }
+      },
+      components:{
+        cpn
+      }
+    });
+  </script>
+</body>
+</html>

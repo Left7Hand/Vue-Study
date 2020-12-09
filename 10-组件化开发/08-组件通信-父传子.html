@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组件通信-父传子</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 使用v-bind绑定需要传递的数据 -->
+      <cpn :ctitle="title"></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <h3>{{ctitle}}</h3>
+        <ul>
+          <li v-for="item in cmovies">{{item}}</li>
+        </ul>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      const cpn = {
+        template: "#cpn",
+        //方式1：传递数组，数组中的都是变量 -> ['变量1', '变量2']
+        // props: ["ctitle", "cmovies"],
+
+        // 方式2：类型限制 -> 变量：类型
+        // props: {
+        //   ctitle: String,
+        //   cmovies: Array,
+        // },
+
+        // 方式3：给予变量默认值和必传值
+        props: {
+          ctitle:{
+            type: String,
+            required: true
+          },
+          cmovies: {
+            type: Array,
+            // 注意：当类型是对象或数组时，默认值必须是一个函数
+            default(){
+              return ['default 111', 'default 222', 'default 333']
+            },
+          }
+        },
+
+        data() {
+          return {};
+        },
+        methods: {},
+      };
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          title: "Vue.js",
+          movies: ["movive1", "movive2", "movive3", "movive4"],
+        },
+        // 注册组件
+        components: {
+          cpn
+        },
+      });
+    </script>
+  </body>
+</html>

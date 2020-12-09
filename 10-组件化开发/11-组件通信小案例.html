@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组件通信小案例</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn
+        :number0="num0"
+        :number1="num1"
+        @value1-change="value1Change"
+        @value2-change="value2Change"
+      ></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <div>
+          <h3>props: {{number0}}</h3>
+          <h3>data: {{dnumber0}}</h3>
+          <!-- 在这里使用v-model本质的双向绑定 -->
+          <input type="text" :value="dnumber0" @input="num0Input" />
+        </div>
+        <hr />
+        <div>
+          <h3>props: {{number1}}</h3>
+          <h3>data: {{dnumber1}}</h3>
+          <!-- 在这里使用v-model本质的双向绑定 -->
+          <input type="text" :value="dnumber1" @input="num1Input" />
+        </div>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      // 案例需求：
+      // 1.在输入框实现双向绑定，父子组件的数据绑定
+      // 在输入框中输入，data中数据发生变化
+      // 2.输入框1中的数据，是输入框2数据的100倍，反过来是0.01倍
+
+      // 子组件 对象
+      const cpn = {
+        template: "#cpn",
+        data() {
+          return {
+            dnumber0: this.dnumber0,
+            dnumber1: this.dnumber1,
+          };
+        },
+        // 父传子
+        props: {
+          number0: { type: Number },
+          number1: { type: Number },
+        },
+        methods: {
+          // 向父组件发送自定义事件，修改数值
+          num0Input(event) {
+            // $event.target.value
+            // 1.输入框输入时，修改data数据
+            this.dnumber0 = event.target.value;
+            // 2.子传父，传递子组件的数据
+            this.$emit("value1-change", this.dnumber0);
+            // 3.同时修改dnumber1和num1的值
+            this.dnumber1 = this.dnumber0 * 100;
+            this.$emit("value2-change", this.dnumber1)
+          },
+          num1Input(event) {
+            this.dnumber1 = event.target.value;
+            this.$emit("value2-change", this.dnumber1);
+            this.dnumber0 = this.dnumber1 / 100;
+            this.$emit("value1-change", this.dnumber0)
+          },
+        },
+      };
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          num0: 0,
+          num1: 1,
+        },
+        components: {
+          cpn,
+        },
+        methods: {
+          // 接收子组件传递的值
+          value1Change(value) {
+            // 接收的是String类型，需要转化成Int
+            this.num0 = parseInt(value);
+          },
+          value2Change(value) {
+            // String -> Int 方式2
+            this.num1 = value * 1;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

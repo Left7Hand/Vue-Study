@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model修饰符</title>
+</head>
+<body>
+  <div id="app">
+    <h3>1.修饰符lazy</h3>
+    <!-- 当输入框按回车或焦点聚焦输入框之外的时候才加载 -->
+    <input type="text" v-model.lazy="message">
+    <h3>message: {{message}}</h3>
+    <hr>
+    <h3>2.修饰符number</h3>
+    <!-- v-model默认绑定string类型，需要number类型的时候要加上修饰符 -->
+    <input type="numer" v-model.number="age">
+    <h3>age: {{age}}---{{typeof age}}</h3>
+    <hr>
+    <h3>3.修饰符trim</h3>
+    <!-- trim可以去除输入框内容左右两边的空格 -->
+    <input type="text" v-model.trim="content">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+        age: '',
+        content: '',
+      }
+    });
+  </script>
+</body>
+</html>

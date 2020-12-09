@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件与模版分离</title>
+</head>
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+    <cpn2></cpn2>    
+  </div>
+  
+  <!-- 方式1：使用script标签的text/x-template属性 -->
+  <script type="text/x-template" id="cpn1">
+    <div><h2>标题1</h2>
+      <p>内容: text/x-template</p></div>
+  </script>
+
+  <!-- 方式2：使用template标签 -->
+  <!-- 注意: 要将标签放在一个div里面，不然内容只显示第一个标签（对比方式1） -->
+  <!-- 因为：template需要一个root标签，也就是要写在一个div内部 -->
+  <template id="cpn2">
+    <h2>标题2</h2>
+    <p>内容: template</p>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+      },
+      components: {
+        cpn1: {
+          template: '#cpn1'
+        },
+        cpn2: {
+          template: '#cpn2'
+        }
+      }
+    });
+  </script>
+  
+</body>
+</html>
