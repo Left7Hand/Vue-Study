@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slot具名插槽</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn>
+        <button slot="left">back</button>
+        <span slot="center" style="color:red">span</span>
+      </cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <slot name="left"><span>left</span></slot>
+        <slot name="center"><span>center</span></slot>
+        <slot name="right"><span>right</span></slot>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Vue.js",
+        },
+        components: {
+          cpn: {
+            template: "#cpn",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

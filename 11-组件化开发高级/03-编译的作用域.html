@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编译的作用域</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 这里使用的是vue实例中的变量 -->
+      <cpn v-show="isShow"></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <h3>标题</h3>
+        <p>内容ppp</p>
+        <!-- 这里使用的是组件内的变量 -->
+        <button v-show="isShow"></button>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: true
+        },
+        components:{
+          cpn:{
+            template: '#cpn',
+            data(){
+              return{
+                isShow: false
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

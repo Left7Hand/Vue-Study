@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6模块化</title>
+</head>
+<body>
+  <!-- es6中在标签中加入type="module"，表示模块化 -->
+  <!-- 每个文件只能访问自己的数据，其他文件不能访问别人的数据 -->
+  <!-- 若要访问别人的数据，别人需要导出export，自己需要导入import -->
+  <script src="./aaa.js" type="module"></script>
+  <script src="./bbb.js" type="module"></script>
+  <script src="./mmm.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$children和$refs</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <cpn></cpn>
+      <cpn ref="keyname"></cpn>
+      <button @click="btnClick">show</button>
+    </div>
+    <template id="cpn">
+      <div>
+        <h3>父组件访问子组件</h3>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Vue.js",
+        },
+        methods: {
+          btnClick() {
+            // 1. $children拿到全部的子组件（开发用的较少），打印的是数组
+            console.log(this.$children);
+
+            // 2. $refs默认是空对象，需要组件绑定ref作为key（开发用的较多）
+            console.log(this.$refs.keyname);
+          },
+        },
+        components: {
+          cpn: {
+            template: "#cpn",
+            methods: {
+              showMessage() {
+                console.log("this is a message...");
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

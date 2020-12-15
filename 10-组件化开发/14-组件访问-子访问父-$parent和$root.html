@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$parent和$root</title>
+</head>
+<body>
+  <div id="app">
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h3>cpn标题</h3>
+      <ccpn></ccpn>
+    </div>
+  </template>
+
+  <template id="ccpn">
+    <div>
+      <h3>ccpn标题</h3>
+      <button @click="btnClick">btn</button>
+    </div>
+  </template>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        message: 'Vue.js',
+      },
+      components:{
+        // 父组件
+        cpn: {
+          template: '#cpn',
+          components: {
+            // 子组件
+            ccpn: {
+              template: '#ccpn',
+              methods: {
+                btnClick(){
+                  // 1.$parent访问父组件
+                  console.log(this.$parent);
+                  // 2.$root访问根组件(根是vue实例)
+                  console.log(this.$root);
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
