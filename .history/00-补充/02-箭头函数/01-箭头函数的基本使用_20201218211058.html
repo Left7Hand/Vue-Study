@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箭头函数的基本使用</title>
+</head>
+<body>
+    <script>
+      // 1.函数的基本写法
+      const aaa = function () {
+        console.log('aaa');
+      }
+      aaa()
+
+      // 2.在对象字面量中，es6对函数的增强写法
+      const bbb = {
+        bbb: function () {
+          console.log('bbb');
+        },
+
+        ccc(){
+          console.log('ccc');
+        }
+      }
+      bbb.bbb()
+      bbb.ccc()
+
+      // 3.箭头函数
+      // const ddd = () => {
+      //   // coding...
+      // }
+
+    </script>
+</body>
+</html>

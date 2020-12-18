@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箭头函数中的this</title>
+</head>
+<body>
+  <script>
+    // 使用function肯定是window
+    setTimeout(function () {
+      console.log(this); 
+    })
+
+    // 这里的 this 是 window
+    // 箭头函数往外层查找
+    setTimeout(()=>{
+      console.log(this);
+    })
+
+  </script>
+</body>
+</html>

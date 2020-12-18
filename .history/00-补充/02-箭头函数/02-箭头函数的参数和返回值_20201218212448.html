@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-箭头函数的参数和返回值</title>
+</head>
+<body>
+  <script>
+    // 1.0 - 有两个参数
+    const add = (num1, num2) => {
+      return num1 + num2
+    }
+    console.log(add(10,20));
+
+    // 2.1 - 只有一个参数，num1原先是(num1)，一个参数时，括号可以省略
+    const square = num => {
+      return num * num
+    }
+    console.log(square(10));
+
+    // 2.2 - 只有一个参数，且代码只有一条时，return和大括号也可以省略
+    const cube = num => num * num * num
+    console.log(cube(10));
+
+    // 3.0 - 返回值是打印语句
+    const print = () => console.log('print语句');
+
+  </script>
+</body>
+</html>
