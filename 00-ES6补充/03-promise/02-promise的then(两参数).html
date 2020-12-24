@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise的then</title>
+</head>
+<body>
+  <script>
+    new Promise((resolve, reject)=>{
+      setTimeout(()=>{
+        // resolve('resolve message')
+        reject('reject message')
+      },2000)
+      // then(一个函数resolve)
+      // 或者 then(两个函数, resolve和reject)
+    }).then(
+      res => {},
+      err => {
+        console.log(err);
+      }
+    )
+  </script>
+</body>
+</html>

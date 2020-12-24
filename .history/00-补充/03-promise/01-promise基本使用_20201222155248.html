@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise基本使用</title>
+</head>
+<body>
+  <script>
+    // Promise(函数)
+    // Promise((resolve, reject) => {})
+    // resolve和reject两者都是函数
+    new Promise((resolve, reject) => {
+      resolve('hello promise');
+      // reject('error message')
+    }).then((data) => {
+      console.log(data);
+    }).catch((err) => {
+      console.log(err);
+    })
+
+  </script>
+</body>
+</html>

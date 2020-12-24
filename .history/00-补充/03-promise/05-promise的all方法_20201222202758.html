@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise的all方法</title>
+</head>
+<body>
+  <script>
+    // 请求方式1：JQuery
+    // let isResult1 = false
+    // let isResult2 = false
+    // 请求1：
+    // $ajax({
+    //   url: '',
+    //   success: function () {
+    //     console.log('result 1');
+    //     isResult1 = true
+    //     handleResult()
+    //   }
+    // })
+    // 请求2：
+    // $ajax({
+    //   url: '',
+    //   success: function () {
+    //     console.log('result 2');
+    //     isResult2 = true
+    //     handleResult()
+    //   }
+    // })
+    // function handleResult() {
+    //   if(isResult1 && isResult2){
+    //     // coding...
+    //   }
+    // }
+
+    // 请求方式2：Promise.all(数组)
+    Promise.all([
+      // 请求1
+      new Promise((resolve, reject) => {
+        resolve('promise 1...')
+      }).then(res => {
+        console.log(res);
+      }),
+      // 请求2
+      new Promise((resolve, reject) => {
+        resolve('promise 2...')
+      }).then(res => {
+        console.log(res);
+      })
+
+      // 用setTimeout模拟
+      // 请求1
+      // new Promise((resolve, reject) => {
+      //   resolve('promise 1...')
+      // }).then(res => {
+      //   console.log(res);
+      // }),
+      // // 请求2
+      // new Promise((resolve, reject) => {
+      //   resolve('promise 2...')
+      // }).then(res => {
+      //   console.log(res);
+      // })
+
+
+
+
+      
+    ]).then(results => {
+      console.log(results);
+    })
+
+
+  </script>
+</body>
+</html>
